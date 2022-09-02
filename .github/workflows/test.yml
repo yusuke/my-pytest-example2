@@ -1,0 +1,32 @@
+name: pytest やるぞー
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  run-pytest:
+    name: "パイテスト♡"
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version:
+          - "3.7"
+          - '3.8'
+    steps:
+      - name: Pull
+        uses: actions/checkout@v3
+
+      - name: "Setup python ${{ matrix.python-version }}"
+        uses: actions/setup-python@v4
+        with:
+          python-version: "${{ matrix.python-version }}"
+
+      - name: Install dependencies
+        run: pip3 install -r requirements.txt
+
+      - name: Run Tests
+        run: pytest
