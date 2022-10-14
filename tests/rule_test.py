@@ -7,6 +7,8 @@ def test_fizz_rule_on_3():
     assert value == Value(3, "Fizz")
 
 
+
+
 def test_fizz_rule_on_5():
     value = fizz_rule(to_value(5))
     assert value == to_value(5)
